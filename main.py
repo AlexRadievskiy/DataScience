@@ -1,10 +1,8 @@
 import yfinance as yf
-import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 import numpy as np
 
-# 1. Получение данных с Yahoo Finance
 def fetch_data():
     ticker = "TON11419-USD"
     data = yf.download(ticker, start="2021-01-01", end="2023-01-01", interval="1mo")
@@ -28,21 +26,17 @@ def fetch_data():
 #     df = pd.DataFrame(data, columns=['Date', 'Close Price'])
 #     return df
 
-# 2. Сохранение результатов в файл
 def save_to_csv(df):
     df.to_csv('parsed_data.csv')
 
-# 3. Оценка динамики тренда реальных данных
 def plot_trend(df):
     df['Close'].plot()
     plt.title('Dynamics of TON Coin')
     plt.show()
 
-# 4. Определение статистических характеристик
 def get_statistics(df):
     return df.describe()
 
-# 5. Синтез и верификация модели данных
 def model_data(df):
     X = np.array(range(len(df))).reshape(-1, 1)
     y = df['Close'].values
